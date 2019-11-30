@@ -1,0 +1,7 @@
+definitions:
+  User:
+    required:
+      - username
+    properties:
+      username:
+        type: string

@@ -1,0 +1,36 @@
+/signup:
+  post:
+    tags:
+      - User
+    description: Signup a new user
+    consumes:
+      - application/json
+    produces:
+      - application/json
+    parameters:
+      - in: body
+        name: body
+        description: New user data
+        required: true
+        schema:
+          type: object
+          properties:
+            username:
+              type: string
+            password:
+              type: string
+    responses:
+      200:
+        description: signup success
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/User'
+      400:
+        description: Some data is missing
+        schema:
+          type: object
+          properties:        
+            message:
+              type: string
+              enum: [Incorrect username, Incorrect password]

@@ -1,0 +1,29 @@
+/products/{productId}:
+  delete:
+    tags:
+      - Product
+    security:
+      - Bearer: [read]
+    description: Delete a product
+    consumes:
+      - application/json
+    produces:
+      - application/json
+    parameters:
+      - in: path
+        name: productId
+        required: true
+        schema:
+          type: integer
+          minimum: 0
+        description: The product ID
+    responses:
+      200:
+        description: Delete success
+        schema:
+          properties:
+            message:
+              type: string
+      401:
+        description: Token is invalid
+                      

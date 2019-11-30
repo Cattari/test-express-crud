@@ -1,0 +1,4 @@
+{
+  "watch": ["./docs", "./src"],
+  "ext": "js yaml json"
+}

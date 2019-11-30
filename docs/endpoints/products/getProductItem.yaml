@@ -1,0 +1,36 @@
+/products/{productId}:
+  get:
+    tags:
+      - Product
+    security:
+      - Bearer: [read]
+    description: Get a product item
+    consumes:
+      - application/json
+    produces:
+      - application/json
+    parameters:
+      - in: path
+        name: productId
+        required: true
+        schema:
+          type: integer
+          minimum: 0
+        description: The product ID
+    responses:
+      200:
+        description: Get success
+        schema:
+          properties:
+            data:
+              type: array 
+              items: 
+                allOf:
+                  - type: object
+                    properties:
+                      id: 
+                        type: string
+                  - $ref: '#/definitions/Product'
+      401:
+        description: Token is invalid
+                      

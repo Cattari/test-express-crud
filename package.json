@@ -1,0 +1,28 @@
+{
+  "name": "test-express-crud",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "repository": "https://github.com/Cattari/test-express-crud.git",
+  "author": "Andrew Shyrokopoyas <fixerrisen@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon src/index.js",
+    "seeds": "node src/seeds.js"
+  },
+  "dependencies": {
+    "crypto": "^1.0.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-jwt": "^5.3.1",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.15",
+    "lowdb": "^1.0.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "shortid": "^2.2.15",
+    "swagger-jsdoc": "^3.4.0",
+    "swagger-ui-express": "^4.1.2",
+    "swagger-ui-dist": "3.20.5"
+  }
+}

@@ -1,0 +1,27 @@
+/products:
+  get:
+    tags:
+      - Product
+    security:
+      - Bearer: [read]
+    description: Get a products list
+    produces:
+      - application/json
+    responses:
+      200:
+        description: Success
+        schema:
+          type: object
+          properties:
+            data:
+              type: array 
+              items: 
+                allOf:
+                  - type: object
+                    properties:
+                      id: 
+                        type: string
+                  - $ref: '#/definitions/Product'
+      401:
+        description: Token is invalid
+                      

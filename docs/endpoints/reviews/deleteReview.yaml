@@ -1,0 +1,29 @@
+/reviews/{reviewId}:
+  delete:
+    tags:
+      - Review
+    security:
+      - Bearer: [read]
+    description: Delete a review
+    consumes:
+      - application/json
+    produces:
+      - application/json
+    parameters:
+      - in: path
+        name: reviewId
+        required: true
+        schema:
+          type: integer
+          minimum: 0
+        description: The review ID
+    responses:
+      200:
+        description: Delete success
+        schema:
+          properties:
+            message:
+              type: string
+      401:
+        description: Token is invalid
+                      

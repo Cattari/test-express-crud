@@ -1,0 +1,42 @@
+/products/{productId}:
+  put:
+    tags:
+      - Product
+    security:
+      - Bearer: [read]
+    description: Change a product item
+    consumes:
+      - application/json
+    produces:
+      - application/json
+    parameters:
+      - in: path
+        name: productId
+        required: true
+        schema:
+          type: integer
+          minimum: 0
+        description: The product ID
+      - in: body
+        name: body
+        description: Product data
+        required: true
+        schema:
+          $ref: '#/definitions/Product'
+    responses:
+      200:
+        description: Change success
+        schema:
+          properties:
+            data:
+              type: array 
+              items: 
+                allOf:
+                  - type: object
+                    properties:
+                      id: 
+                        type: string
+                  - $ref: '#/definitions/Product'
+      401:
+        description: Token is invalid
+                      

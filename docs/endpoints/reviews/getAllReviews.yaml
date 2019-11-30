@@ -1,0 +1,26 @@
+/reviews:
+  get:
+    tags:
+      - Review
+    security:
+      - Bearer: [read]
+    description: Get a reviews list
+    produces:
+      - application/json
+    responses:
+      200:
+        description: Success
+        schema:
+          properties:
+            data:
+              type: array 
+              items: 
+                allOf:
+                  - type: object
+                    properties:
+                      id: 
+                        type: string
+                  - $ref: '#/definitions/Review'
+      401:
+        description: Token is invalid
+                      

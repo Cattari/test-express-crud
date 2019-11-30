@@ -1,0 +1,46 @@
+/auth:
+  post:
+    tags:
+      - User
+    description: Login to the application
+    consumes:
+      - application/json
+    produces:
+      - application/json
+    parameters:
+      - in: body
+        name: body
+        description: Credentials
+        required: true
+        schema:
+          allOf:
+            - $ref: '#/definitions/User'
+            - type: object
+              properties:
+                password:
+                  type: string
+    responses:
+      200:
+        description: Login success
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  allOf:
+                    - $ref: '#/definitions/User'    
+                    - type: object
+                      properties:
+                        id: 
+                          type: string          
+                token:
+                  type: string
+      400:
+        description: login failure (user not found or password is incorrect)
+        schema:
+          type: object
+          properties:        
+            message:
+              type: string
+              enum: [Incorrect username, Incorrect password]  

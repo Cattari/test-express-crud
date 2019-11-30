@@ -1,0 +1,36 @@
+/reviews/{reviewId}:
+  get:
+    tags:
+      - Review
+    security:
+      - Bearer: [read]
+    description: Get a review item
+    consumes:
+      - application/json
+    produces:
+      - application/json
+    parameters:
+      - in: path
+        name: reviewId
+        required: true
+        schema:
+          type: integer
+          minimum: 0
+        description: The review ID
+    responses:
+      200:
+        description: Success
+        schema:
+          properties:
+            data:
+              type: array 
+              items: 
+                allOf:
+                  - type: object
+                    properties:
+                      id: 
+                        type: string
+                  - $ref: '#/definitions/Review'
+      401:
+        description: Token is invalid
+                      

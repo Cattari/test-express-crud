@@ -1,0 +1,34 @@
+/products:
+  post:
+    tags:
+      - Product
+    security:
+      - Bearer: [read]
+    description: Add a new product
+    consumes:
+      - application/json
+    produces:
+      - application/json
+    parameters:
+      - in: body
+        name: body
+        description: Product data
+        required: true
+        schema:
+          $ref: '#/definitions/Product'
+    responses:
+      200:
+        description: Add success
+        schema:
+          properties:
+            data:
+              type: array 
+              items: 
+                allOf:
+                  - type: object
+                    properties:
+                      id: 
+                        type: string
+                  - $ref: '#/definitions/Product'      
+      401:
+        description: Token is invalid                

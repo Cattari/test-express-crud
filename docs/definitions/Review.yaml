@@ -1,0 +1,10 @@
+definitions:
+  Review:
+    required:
+      - content
+      - productId
+    properties:
+      content:
+        type: string
+      productId:
+        type: number

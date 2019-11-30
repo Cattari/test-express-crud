@@ -1,0 +1,35 @@
+/products/{productId}/reviews:
+  get:
+    tags:
+      - Product
+      - Review
+    security:
+      - Bearer: [read]
+    description: Get a product reviews list
+    produces:
+      - application/json
+    parameters:
+      - in: path
+        name: productId
+        required: true
+        schema:
+          type: integer
+          minimum: 0
+        description: The product ID
+    responses:
+      200:
+        description: Success
+        schema:
+          properties:
+            data:
+              type: array 
+              items: 
+                allOf:
+                  - type: object
+                    properties:
+                      id: 
+                        type: string
+                  - $ref: '#/definitions/Review'
+      401:
+        description: Token is invalid
+                      

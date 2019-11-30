@@ -1,0 +1,19 @@
+definitions:
+  ProductOption:
+    properties:
+      color:
+        type: string
+      size:
+        type: string
+  Product:
+    required:
+      - name
+    properties:
+      name:
+        type: string
+      price:
+        type: number
+      options:
+        type: array
+        items:
+          $ref: '#/definitions/ProductOption'
