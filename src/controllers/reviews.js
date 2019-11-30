@@ -71,19 +71,11 @@ exports.removeItem = (req, res) => {
 };
 
 exports.validate = (method) => {
-  const baseItemValidation = [ 
+  if (method === 'addItem') return [ 
     check('author', 'Author can not be empty').exists().isLength({ min: 1 }), 
     check('content', 'Content can not be empty').exists().isLength({ min: 1 }),
   ];
 
-  switch (method) {
-    case 'addItem':
-      return baseItemValidation;
-    case 'changeItem':
-      return [ 
-        check('id', 'Id can not be empty').exists().isLength({ min: 1 }),
-        ...baseItemValidation
-      ]
-  }
+  return [];
 }
 

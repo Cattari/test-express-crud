@@ -99,18 +99,10 @@ exports.getProductReviews = (req, res) => {
 };
 
 exports.validate = (method) => {
-  const baseItemValidation = [ 
+  if (method === 'addItem') return [ 
     check('name', 'Name can not be empty').isLength({ min: 1 }),
     check('price', 'Price can not be empty').isLength({ min: 1 }),
   ];
 
-  switch (method) {
-    case 'addItem':
-      return baseItemValidation;
-    case 'changeItem':
-      return [ 
-        check('id', 'Id can not be empty').isLength({ min: 1 }),
-        ...baseItemValidation
-      ]
-  }
+  return [];
 }

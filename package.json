@@ -9,7 +9,7 @@
     "start:watch": "cross-env NODE_ENV=development nodemon src/index.js",
     "start": "cross-env NODE_ENV=development node src/index.js",
     "db:clear": "node cli/clearDb.js",
-    "seeds": "node cli/seeds.js",
+    "db:init": "node cli/seeds.js",
     "test": "cross-env NODE_ENV=test jest",
     "test:coverage": "jest --coverage",
     "lint": "eslint src/**"

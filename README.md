@@ -9,7 +9,9 @@ Install nodemon & cross-env globally
 
 #### Install local dependencies
 `$ yarn`
-`$ yarn seeds`
+#### Initialize the DB
+`$ yarn db:init`
+#### Start the server
 `$ yarn start` or `$ yarn start:watch`
 
 #### Run linter
