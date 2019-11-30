@@ -1,6 +1,7 @@
 # Test App "Products API"
 
 Swagger is accessible with `/docs` link 
+Also, when authorizing, don't forget to add 'Bearer ' as a prefix.
 
 #### Get started
 Install nodemon & cross-env globally
