@@ -2,9 +2,9 @@ const { Review } = require('../models');
 
 exports.getList = (req, res) => {
   try {
-    const reviews = Review.getList(req.params);
+    const data = Review.getList(req.params);
 
-    return res.json(reviews);
+    return res.json({ data });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: 'Something went wrong' });
@@ -14,11 +14,11 @@ exports.getList = (req, res) => {
 exports.getItem = (req, res) => {
   try {
     const { reviewId: id } = req.params;
-    const reviewData = Review.findOne({ id });
+    const data = Review.findOne({ id });
 
-    if (!reviewData) return res.json({ message: `Review with id ${id} not found` });
+    if (!data) return res.json({ message: `Review with id ${id} not found` });
 
-    return res.json(reviewData);
+    return res.json({ data });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: 'Something went wrong' });
@@ -27,9 +27,9 @@ exports.getItem = (req, res) => {
 
 exports.addItem = (req, res) => {
   try {
-    Review.addOne(req.body);
+    const data = Review.addOne(req.body);
 
-    return res.json(req.body);
+    return res.json({ data });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: 'Something went wrong' });
@@ -43,7 +43,7 @@ exports.changeItem = (req, res) => {
 
     if (!data) return res.json({ message: `Review with id ${id} not found` });
 
-    return res.json(data);
+    return res.json({ data });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: 'Something went wrong' });

@@ -8,7 +8,7 @@ exports.findOne = params => db
 
 exports.addOne = data => db
   .get('products')
-  .push({ id: shortid.generate(), ...data })
+  .push({ ...data, id: shortid.generate() })
   .write();
 
 exports.updateOne = (params, data) => db
@@ -17,7 +17,7 @@ exports.updateOne = (params, data) => db
   .assign(data)
   .write();
 
-exports.remove = params => db
+exports.remove = (params = {}) => db
   .get('products')
   .remove(params)
   .write();

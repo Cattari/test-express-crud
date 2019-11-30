@@ -1,12 +1,14 @@
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const { omit } = require('lodash');
+
 const { User } = require('../models');
 const { sha1 } = require('../utils');
 
 module.exports.login = (req, res) => {
+  
   passport.authenticate('local', { session: false }, (err, user, info) => {
-    if (err || !user) {      
+    if (err || !user) {     
       return res.status(400).json(err);
     }
 
@@ -26,7 +28,7 @@ module.exports.signUp = (req, res) => {
 
     return res.json(omit(req.body, 'password'));
   } catch (error) {
-    console.log(error); //use winston or other logging tool
+    console.log(error); //@TODO use winston or other logging tool
     return res.status(500).json({ message: 'Something bad happened' });
   }
 };

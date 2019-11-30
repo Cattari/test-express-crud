@@ -1,5 +1,6 @@
 const products = require('express').Router({ mergeParams: true });
 const productsController = require('../controllers/products');
+const reviewsRoutes = require('./reviews');
 
 products.get('/', productsController.getList);
 products.post('/', productsController.addItem);

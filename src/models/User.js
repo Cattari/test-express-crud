@@ -11,3 +11,8 @@ exports.addOne = data => db
   .push({ id: shortid.generate(), ...data })
   .write();
 
+exports.remove = (params = {}) => db
+  .get('users')
+  .remove(params)
+  .write();
+
