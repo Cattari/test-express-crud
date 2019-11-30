@@ -57,7 +57,8 @@ describe('E2E Product actions', () => {
         .set('Authorization', `Bearer ${token}`)
         .send(newProductInitData);
 
-      const newProductRecord = last(newProductResponse.body.data)
+      const newProductRecord = last(newProductResponse.body.data);
+
       productsListResponse = await request(app)
         .get('/products')
         .set('Authorization', `Bearer ${token}`);
@@ -118,7 +119,8 @@ describe('E2E Product actions', () => {
         .set('Authorization', `Bearer ${token}`)
         .send(newReviewInitData);
 
-      const newReviewRecord = last(newReviewResponse.body.data)
+      const newReviewRecord = last(newReviewResponse.body.data);
+
       reviewsListResponse = await request(app)
         .get('/products/1/reviews')
         .set('Authorization', `Bearer ${token}`);

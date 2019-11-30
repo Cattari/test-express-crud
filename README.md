@@ -7,10 +7,13 @@ Also, when authorizing, don't forget to add 'Bearer ' as a prefix.
 Install nodemon & cross-env globally
 `$ yarn global add nodemon cross-env` or `$ npm i -g nodemon cross-env`
 
-Install local dependencies
+#### Install local dependencies
 `$ yarn`
 `$ yarn seeds`
 `$ yarn start` or `$ yarn start:watch`
+
+#### Run linter
+`$ yarn lint`
 
 #### Run unit-tests
 `$ yarn test`
