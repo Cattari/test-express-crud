@@ -1,3 +1,4 @@
+const { check } = require('express-validator');
 const { Product, Review } = require('../models');
 const { ABSTRACT_ERROR_TEXT } = require('../constants');
 
@@ -34,6 +35,10 @@ exports.getItem = (req, res) => {
 
 exports.addItem = (req, res) => {
   try {
+    const errors = validationResult(req);
+  
+    if (!errors.isEmpty()) return res.status(422).json({ errors: errors.array() });
+
     const data = Product.addOne(req.body);
 
     return res.json({ data });
@@ -46,6 +51,10 @@ exports.addItem = (req, res) => {
 
 exports.changeItem = (req, res) => {
   try {
+    const errors = validationResult(req);
+  
+    if (!errors.isEmpty()) return res.status(422).json({ errors: errors.array() });
+
     const { productId: id } = req.params;
     const data = Product.updateOne({ id }, req.body);
 
@@ -88,3 +97,20 @@ exports.getProductReviews = (req, res) => {
     return res.json({ message: ABSTRACT_ERROR_TEXT });
   }
 };
+
+exports.validate = (method) => {
+  const baseItemValidation = [ 
+    check('name', 'Name can not be empty').exists().isLength({ min: 1 }),
+    check('price', 'Price can not be empty').exists().isLength({ min: 1 }),
+  ];
+
+  switch (method) {
+    case 'addItem':
+      return baseItemValidation;
+    case 'changeItem':
+      return [ 
+        check('id', 'Id can not be empty').exists().isLength({ min: 1 }),
+        ...baseItemValidation
+      ]
+  }
+}

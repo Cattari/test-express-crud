@@ -27,6 +27,9 @@ exports.getItem = (req, res) => {
 
 exports.addItem = (req, res) => {
   try {
+    const errors = validationResult(req);
+  
+    if (!errors.isEmpty()) return res.status(422).json({ errors: errors.array() });
     const data = Review.addOne(req.body);
 
     return res.json({ data });
@@ -38,6 +41,9 @@ exports.addItem = (req, res) => {
 
 exports.changeItem = (req, res) => {
   try {
+    const errors = validationResult(req);
+  
+    if (!errors.isEmpty()) return res.status(422).json({ errors: errors.array() });
     const { reviewId: id } = req.params;
     const data = Review.updateOne({ id }, req.body);
 
@@ -62,4 +68,21 @@ exports.removeItem = (req, res) => {
     return res.status(500).json({ message: 'Something went wrong' });
   }
 };
+
+exports.validate = (method) => {
+  const baseItemValidation = [ 
+    check('author', 'Author can not be empty').exists().isLength({ min: 1 }),
+    check('content', 'Content can not be empty').exists().isLength({ min: 1 }),
+  ];
+
+  switch (method) {
+    case 'addItem':
+      return baseItemValidation;
+    case 'changeItem':
+      return [ 
+        check('id', 'Id can not be empty').exists().isLength({ min: 1 }),
+        ...baseItemValidation
+      ]
+  }
+}
 

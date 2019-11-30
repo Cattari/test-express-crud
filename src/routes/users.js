@@ -1,8 +1,8 @@
 const express = require('express');
 const auth = express.Router({ mergeParams: true });   
-const { login, signUp } = require('../controllers/users');
+const userController = require('../controllers/users');
 
-auth.post('/auth', login);
-auth.post('/signup', signUp);
+auth.post('/auth', userController.validate('login'), userController.login);
+auth.post('/signup', userController.validate('signUp'), userController.signUp);
 
 module.exports = auth;
