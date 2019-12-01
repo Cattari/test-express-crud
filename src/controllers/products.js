@@ -76,6 +76,10 @@ exports.removeItem = (req, res) => {
     const { productId: id } = req.params;
 
     Product.remove({ id });
+    /**
+     * Cascade remove product reviews
+     */
+    Review.remove({ productId: id });
 
     return res.json({ message: 'Success' });
   } catch (error) {
